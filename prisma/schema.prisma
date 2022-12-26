@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Address {
+  addressId     Int       @id
+  title         String    @db.VarChar(100)
+  formId        Int
+  parentId      Int
+  Form          Form      @relation(fields: [formId], references: [formId], onDelete: NoAction, onUpdate: NoAction, map: "Address_ibfk_1")
+  Address       Address   @relation("AddressToAddress", fields: [parentId], references: [addressId], onDelete: NoAction, onUpdate: NoAction, map: "Address_ibfk_2")
+  other_Address Address[] @relation("AddressToAddress")
+
+  @@index([formId], map: "formId")
+  @@index([parentId], map: "parentId")
+}
+
+model Adoption {
+  adoptionFormId Int  @id
+  Form           Form @relation(fields: [adoptionFormId], references: [formId], onDelete: NoAction, onUpdate: NoAction, map: "Adoption_ibfk_1")
+}
+
+model Animal {
+  animalId Int     @id @default(autoincrement())
+  age      Int
+  name     String  @db.VarChar(64)
+  location String  @db.VarChar(200)
+  picture  String? @db.VarChar(256)
+  Cat      Cat?
+  Dog      Dog?
+  Form     Form[]
+}
+
+model Cat {
+  animalId Int    @id
+  Animal   Animal @relation(fields: [animalId], references: [animalId], onDelete: NoAction, onUpdate: NoAction, map: "Cat_ibfk_1")
+}
+
+model Dog {
+  animalId Int    @id
+  Animal   Animal @relation(fields: [animalId], references: [animalId], onDelete: NoAction, onUpdate: NoAction, map: "Dog_ibfk_1")
+}
+
+model Form {
+  date        DateTime  @db.Date
+  ownerName   String    @db.VarChar(100)
+  formId      Int       @id @default(autoincrement())
+  phoneNumber String    @db.VarChar(11)
+  email       String    @db.VarChar(50)
+  hasAdopted  Int
+  animalId    Int
+  Address     Address[]
+  Adoption    Adoption?
+  Animal      Animal    @relation(fields: [animalId], references: [animalId], onDelete: NoAction, onUpdate: NoAction, map: "Form_ibfk_1")
+  Foster      Foster?
+  Receipt     Receipt[]
+
+  @@index([animalId], map: "animalId")
+}
+
+model Foster {
+  endDate        DateTime? @db.Date
+  adoptionFormId Int       @id
+  Form           Form      @relation(fields: [adoptionFormId], references: [formId], onDelete: NoAction, onUpdate: NoAction, map: "Foster_ibfk_1")
+}
+
+model Receipt {
+  receiptId Int   @id @default(autoincrement())
+  formId    Int
+  userId    Int
+  Form      Form  @relation(fields: [formId], references: [formId], onDelete: NoAction, onUpdate: NoAction, map: "Receipt_ibfk_1")
+  Users     Users @relation(fields: [userId], references: [userId], onDelete: NoAction, onUpdate: NoAction, map: "Receipt_ibfk_2")
+
+  @@index([formId], map: "formId")
+  @@index([userId], map: "userId")
+}
+
+model Roles {
+  roleId     Int          @id
+  name       String       @unique(map: "name") @db.VarChar(50)
+  RolesLinks RolesLinks[]
+  Users      Users[]
+}
+
+model RolesLinks {
+  links  String @db.VarChar(100)
+  roleId Int
+  Roles  Roles  @relation(fields: [roleId], references: [roleId], onDelete: NoAction, onUpdate: NoAction, map: "RolesLinks_ibfk_1")
+
+  @@id([links, roleId])
+  @@index([roleId], map: "roleId")
+}
+
+model Users {
+  userId      Int       @id @default(autoincrement())
+  name        String    @db.VarChar(50)
+  password    String    @db.VarChar(50)
+  dateOfBirth DateTime? @db.Date
+  email       String    @unique(map: "email") @db.VarChar(50)
+  city        Int?
+  roleId      Int
+  Receipt     Receipt[]
+  Roles       Roles     @relation(fields: [roleId], references: [roleId], onDelete: NoAction, onUpdate: NoAction, map: "Users_ibfk_1")
+
+  @@index([roleId], map: "roleId")
+}
