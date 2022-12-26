@@ -29,8 +29,7 @@ async function signup(e){
 		alert("passwords don't match!")
 		return;
 	}
-	console.log(name);
-	const req = await fetch(baseUrl+"signUp", {
+	const res = await fetch(baseUrl+"signUp", {
 		method: 'POST',
 		headers:{
 			'Content-Type': "application/json"
@@ -42,6 +41,7 @@ async function signup(e){
 			confPassword
 		})
 	})
+	
 
 }
 
@@ -49,6 +49,11 @@ async function signin(e){
 	e.preventDefault();
 	let email = document.getElementById("signInEmail").value;
 	let password = document.getElementById("signInPassword").value;
+	if(!validateEmail(email)){
+		alert("enter a vaild email.");
+		return;
+	}
+
 	const req = await fetch(baseUrl + "signIn", {
 		method: 'POST',
 		headers: {
