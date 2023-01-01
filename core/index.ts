@@ -67,5 +67,9 @@ app.post('/signIn', (req: Request, res: Response) =>{
   })();
 });
 
+app.post('/adopt', (req: Request, res: Response)=>{
+  dataBaseHandler.createForm(req.body);
+});
+
 
 app.listen(3000, ()=> console.log("listening on port 3000"));

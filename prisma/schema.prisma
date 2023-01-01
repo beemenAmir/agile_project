@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -47,16 +47,18 @@ model Dog {
 }
 
 model Form {
-  date        DateTime  @db.Date
+  date        DateTime? @db.Date
   ownerName   String    @db.VarChar(100)
   formId      Int       @id @default(autoincrement())
   phoneNumber String    @db.VarChar(11)
   email       String    @db.VarChar(50)
-  hasAdopted  Int
-  animalId    Int
+  hasAdopted  Int?
+  animalId    Int?
+  address     String    @db.VarChar(100)
+  age         Decimal   @db.Decimal
   Address     Address[]
   Adoption    Adoption?
-  Animal      Animal    @relation(fields: [animalId], references: [animalId], onDelete: NoAction, onUpdate: NoAction, map: "Form_ibfk_1")
+  Animal      Animal?   @relation(fields: [animalId], references: [animalId], onDelete: NoAction, onUpdate: NoAction, map: "Form_ibfk_1")
   Foster      Foster?
   Receipt     Receipt[]
 
@@ -76,7 +78,7 @@ model Receipt {
   Form      Form  @relation(fields: [formId], references: [formId], onDelete: NoAction, onUpdate: NoAction, map: "Receipt_ibfk_1")
   Users     Users @relation(fields: [userId], references: [userId], onDelete: NoAction, onUpdate: NoAction, map: "Receipt_ibfk_2")
 
-  @@index([formId], map: "formId")
+  @@index([formId], map: "formid")
   @@index([userId], map: "userId")
 }
 
@@ -107,5 +109,5 @@ model Users {
   Receipt     Receipt[]
   Roles       Roles     @relation(fields: [roleId], references: [roleId], onDelete: NoAction, onUpdate: NoAction, map: "Users_ibfk_1")
 
-  @@index([roleId], map: "roleId")
+  @@index([roleId], map: "roleid")
 }

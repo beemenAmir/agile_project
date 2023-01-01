@@ -42,6 +42,19 @@ export class DatabaseHandler {
     })
    }
 
+   async createForm(data : any){
+    await this.prisma.form.create({
+      data: {
+        ownerName: data.name,
+        email: data.email,
+        age: data.age,
+        address:data.address,
+        phoneNumber:data.phone,
+      }
+    })
+   }
+
+
    async getAllanimals(){
     const animals = await this.prisma.animal.findMany();
     return animals;
