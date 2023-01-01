@@ -15,7 +15,7 @@ CREATE TABLE Form
   formId INT NOT NULL auto_increment,
   phoneNumber VARCHAR(11) NOT NULL,
   email VARCHAR(50) NOT NULL,
-  hasAdopted INT NOT NULL,Foster
+  hasAdopted INT NOT NULL,
   animalId INT NOT NULL,
   PRIMARY KEY (formId),
   FOREIGN KEY (animalId) REFERENCES Animal(animalId)
@@ -38,7 +38,7 @@ CREATE TABLE Dog
 CREATE TABLE Roles
 (
   roleId INT NOT NULL,
-  name VARCHAR(50) NOT NULL,
+  roleName VARCHAR(50) NOT NULL,
   PRIMARY KEY (roleId),
   UNIQUE (name)
 );
@@ -60,7 +60,7 @@ CREATE TABLE Adoption
 
 CREATE TABLE RolesLinks
 (
-  links VARCHAR(100) NOT NULL,
+  links VARCHAR(100) NULL,
   roleId INT NOT NULL,
   PRIMARY KEY (links, roleId),
   FOREIGN KEY (roleId) REFERENCES Roles(roleId)
@@ -71,9 +71,9 @@ CREATE TABLE Users
   userId INT NOT NULL auto_increment,
   username VARCHAR(50) NOT NULL,
   password VARCHAR(50) NOT NULL,
-  dateOfBirth DATE NOT NULL,
+  dateOfBirth DATE NULL,
   email VARCHAR(50) NOT NULL,
-  city INT NOT NULL,
+  city INT NULL,
   roleId INT NOT NULL,
   PRIMARY KEY (userId),
   FOREIGN KEY (roleId) REFERENCES Roles(roleId),
