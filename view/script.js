@@ -10,7 +10,7 @@ document.getElementById("signInBtn").addEventListener('click', signin)
 
 const baseUrl = "http://localhost:3000/"
 async function signup(e){
-	e.preventDefault()
+	// e.preventDefault()
 	let name = document.getElementById("signUpName").value;
 	let email = document.getElementById("signUpEmail").value;
 	let password = document.getElementById("signUpPassword").value;
@@ -46,7 +46,7 @@ async function signup(e){
 }
 
 async function signin(e){
-	e.preventDefault();
+	// e.preventDefault();
 	let email = document.getElementById("signInEmail").value;
 	let password = document.getElementById("signInPassword").value;
 	if(!validateEmail(email)){
@@ -64,6 +64,8 @@ async function signin(e){
 			password
 		})
 	})
+	if(req.ok){window.location.href="adoptPage/adopt.html"}
+
 
 }
 const validateEmail = (email) => {
