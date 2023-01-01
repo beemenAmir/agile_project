@@ -50,10 +50,14 @@ export class DatabaseHandler {
         age: data.age,
         address:data.address,
         phoneNumber:data.phone,
+        hasAdopted:data.adopt
       }
     })
    }
-
+   async getForms(){
+    const forms = await this.prisma.form.findMany();
+    return forms;
+   }
 
    async getAllanimals(){
     const animals = await this.prisma.animal.findMany();
