@@ -25,6 +25,15 @@ document.getElementById("age").value = "4 years";
 document.getElementById('animalPic').src = picture;
 document.getElementById('loc').value = loc;
 document.getElementById('animal type').value = type;
+document.getElementById("adoptBtn").addEventListener('click', openAdopt)
+document.getElementById("fosterBtn").addEventListener('click', openfoster)
+
+function openAdopt(){
+  window.location.href="../adoptForm/adoptform.html"
+}
+ function openfoster(){
+  window.location.href="../fosterForm/fosterform.html"
+ }
 
 let slideIndex = 1;
 showSlides(slideIndex);

@@ -212,3 +212,35 @@ button{
       float: none;
       display: block;
     }}
+
+/* Add a hover effect to the button */
+.adopt-button:hover {
+  background: -webkit-linear-gradient(left,#6DD5FA, #2980B9);
+}
+
+.foster-button {
+  
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: 'Nunito', sans-serif;
+  background: -webkit-linear-gradient(left, #2980B9,#6DD5FA);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.foster-button:hover {
+  background: -webkit-linear-gradient(left,#6DD5FA, #2980B9);
+}
+button{
+  background-color: #32c6f4;
+  border-color:transparent;
+  text-align: center;
+  width: 50%;
+  height: 10%;
+  border-radius: 8px;
+  margin-left: 66px;
+}

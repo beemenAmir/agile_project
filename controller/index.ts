@@ -47,7 +47,6 @@ app.post('/signIn', (req: Request, res: Response) =>{
     if (users.length == 0){
       res.status(404).send("not found")
     }else{
-      console.log("here")
       res.status(200).redirect("adoptPage/adopt.html");
     }
     
