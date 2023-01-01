@@ -86,8 +86,8 @@ float: left;
   
   
   img{
-    width: 100%;
-    height: 100%;
+    width: 293px;
+    height: 293px;
   }
   p{
     text-align: center;
@@ -118,8 +118,8 @@ float: left;
   -moz-text-fill-color: transparent;
 }
 .imgs{
-  width:100%;  
-  height:50%;
+  width: 293px;;  
+  height: 293px;
 }  
 .animalname{
   text-align: center;

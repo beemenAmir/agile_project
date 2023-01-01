@@ -14,6 +14,7 @@
 baseUrl = "http://localhost:3000/"
 
 const pets = document.getElementsByClassName("column1");
+let index = 0;
 
 (async() =>{
     let res = await fetch(baseUrl+ 'animals');
@@ -22,6 +23,14 @@ const pets = document.getElementsByClassName("column1");
         document.getElementsByClassName("animalname")[i].innerText = animalData[i].name;
         document.getElementsByClassName("animalplace")[i].innerText = animalData[i].location;
         document.getElementsByClassName("imgs")[i].src = animalData[i].picture;
+
+        document.getElementsByClassName("viewProfileBtn")[i].addEventListener('click',()=>{
+            window.location.href = "../details/Details.html"
+
+            localStorage.setItem("animalname",animalData[i].name);
+            localStorage.setItem("animalplace",animalData[i].location);
+            localStorage.setItem("imgs",animalData[i].picture);
+        })
     }
 
 })();

@@ -64,7 +64,7 @@ async function signin(e){
 			password
 		})
 	})
-	if(req.ok){window.location.href="adoptPage/adopt.html"}
+	if(req.ok){window.location.href="home/home.html"}
 
 
 }
