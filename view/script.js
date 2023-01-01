@@ -64,7 +64,7 @@ async function signin(e){
 			password
 		})
 	})
-
+	
 	const res = await fetch(baseUrl+ 'isAdmin',{
 		method: 'POST',
 		headers: {
@@ -77,12 +77,10 @@ async function signin(e){
 	});
 	console.log(res)
 	if(res.ok){
-			window.location.href="admin dashboard/admin.html"
-			return;
+		window.location.href="admin dashboard/admin.html"
+		return;
 	}
-
 	if(req.ok){window.location.href="home/home.html"}
-
 
 }
 const validateEmail = (email) => {
