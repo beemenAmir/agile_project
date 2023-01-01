@@ -10,17 +10,21 @@
 // const data =["dfrfr","dfrfr","dfrfr","dfrfr","dfrfr","dfrfr",]
 // data.map(e=>buildcolumn(e))
 
-let name = localStorage.getItem('animalname')
-let location = localStorage.getItem('animalplace')
-let picture = localStorage.getItem('imgs')
+let name = localStorage.getItem('animalname');
+let loc = localStorage.getItem('animalplace');
+let picture = localStorage.getItem('imgs');
+let age = localStorage.getItem('age');
+let type = localStorage.getItem('type');
+console.log(name);
+console.log(loc);
+console.log(picture);
+console.log(age);
 
-console.log(location);
-
-// images = document.getElementsByClassName("image")
-
-// for (img in images){
-//   img.src = picture
-// }
+document.getElementById("animal name").value = name;
+document.getElementById("age").value = "4 years";
+document.getElementById('animalPic').src = picture;
+document.getElementById('loc').value = loc;
+document.getElementById('animal type').value = type;
 
 let slideIndex = 1;
 showSlides(slideIndex);

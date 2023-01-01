@@ -25,11 +25,23 @@ let index = 0;
         document.getElementsByClassName("imgs")[i].src = animalData[i].picture;
 
         document.getElementsByClassName("viewProfileBtn")[i].addEventListener('click',()=>{
-            window.location.href = "../details/Details.html"
+            window.location.href = "../details/animaldetails.html"
+            index = i;
+            if (index ==2){
+                animalData[i].age = "2 month";
+            }else{
+                animalData[i].age = "3 years"
+            }
+            if (index == 1){
+                localStorage.setItem('type', "cat")
+            }else{
+                localStorage.setItem('type', 'dog')
+            }
 
             localStorage.setItem("animalname",animalData[i].name);
             localStorage.setItem("animalplace",animalData[i].location);
             localStorage.setItem("imgs",animalData[i].picture);
+            localStorage.setItem("age",animalData[i].age);
         })
     }
 
