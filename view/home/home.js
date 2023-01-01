@@ -17,3 +17,14 @@ function showSlides() {
   dots[slideIndex-1].className += " active";
   setTimeout(showSlides, 2000); // Change image every 2 seconds
 }
+
+document.getElementById("adoptBtn").addEventListener("click", ()=>{
+  window.location.href= "../adoptPage/adopt.html";
+})
+
+
+
+document.getElementById("fosterBtn").addEventListener('click', () => {
+  window.location.href= "../foster page/foster.html";
+
+})
