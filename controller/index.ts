@@ -48,6 +48,10 @@ app.post('/signUp', (req: Request, res: Response)=>{
   dataBaseHandler.createUser(req.body);
 });
 
+app.post('/createAnimal', (req: Request, res: Response)=>{
+  dataBaseHandler.createAnimal(req.body);
+});
+
 app.post('/signIn', (req: Request, res: Response) =>{
   // console.log(req.body.email)
   let condition = {
@@ -62,6 +66,26 @@ app.post('/signIn', (req: Request, res: Response) =>{
     }else{
       console.log("here")
       res.status(200).redirect("adoptPage/adopt.html");
+    }
+    
+  })();
+});
+
+
+app.post('/isAdmin', (req: Request, res: Response) =>{
+  // console.log(req.body.email)
+  let condition = {
+    email: req.body.email,
+    password: req.body.password,
+    roleId:0
+  };
+  
+  (async ()=>{
+    const users = await dataBaseHandler.getUsers(condition);
+    if (users.length == 0){
+      res.status(404).send("not found")
+    }else{
+      res.status(200).redirect("admin dashboard/admin.html")
     }
     
   })();

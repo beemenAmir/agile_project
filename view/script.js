@@ -64,8 +64,22 @@ async function signin(e){
 			password
 		})
 	})
-	if(req.ok){window.location.href="adoptPage/adopt.html"}
 
+	const res = await fetch(baseUrl+ 'isAdmin',{
+		method: 'POST',
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body:JSON.stringify({
+			email,
+			password,
+		})
+	});
+	console.log(res)
+	if(res.ok){
+			window.location.href="admin dashboard/admin.html"
+			return;
+	}
 
 }
 const validateEmail = (email) => {

@@ -35,9 +35,9 @@ export class DatabaseHandler {
     await this.prisma.animal.create({
       data: {
         name: data.name,
-        age: data.age,
+        age: parseInt (data.age),
         location: data.location,
-        picture: data.picture
+        picture: data.file
       }
     })
    }
@@ -47,7 +47,7 @@ export class DatabaseHandler {
       data: {
         ownerName: data.name,
         email: data.email,
-        age: data.age,
+        age:data.age,
         address:data.address,
         phoneNumber:data.phone,
         hasAdopted:data.adopt
