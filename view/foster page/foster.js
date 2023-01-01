@@ -9,3 +9,19 @@
 // buildcolumn("ggdtg")
 // const data =["dfrfr","dfrfr","dfrfr","dfrfr","dfrfr","dfrfr",]
 // data.map(e=>buildcolumn(e))
+
+
+baseUrl = "http://localhost:3000/"
+
+const pets = document.getElementsByClassName("column1");
+
+(async() =>{
+    let res = await fetch(baseUrl+ 'animals');
+    let animalData = await res.json();
+    for(let i = 0; i< pets.length; i++){
+        document.getElementsByClassName("animalname")[i].innerText = animalData[i].name;
+        document.getElementsByClassName("animalplace")[i].innerText = animalData[i].location;
+        document.getElementsByClassName("imgs")[i].src = animalData[i].picture;
+    }
+
+})();

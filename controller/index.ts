@@ -27,9 +27,9 @@ let animal3 = {
   picture: "https://static.wixstatic.com/media/c89dc2_5e26649865674b5e8b2fd22dd6879fb2~mv2.png/v1/fill/w_293,h_293,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/IMG_4995_HEIC.png"
 }
 
-dataBaseHandler.createAnimal(animal1);
-dataBaseHandler.createAnimal(animal2);
-dataBaseHandler.createAnimal(animal3);
+// dataBaseHandler.createAnimal(animal1);
+// dataBaseHandler.createAnimal(animal2);
+// dataBaseHandler.createAnimal(animal3);
 
 
 
@@ -60,7 +60,8 @@ app.post('/signIn', (req: Request, res: Response) =>{
     if (users.length == 0){
       res.status(404).send("not found")
     }else{
-      
+      console.log("here")
+      res.status(200).redirect("adoptPage/adopt.html");
     }
     
   })();
